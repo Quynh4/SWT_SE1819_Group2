@@ -5,8 +5,6 @@ public class Employee {
     private String name;
     private EmployeeType employeeType;
 
-    public Employee() {
-    }
     public Employee(int id, String name, EmployeeType employeeType) {
             this.id = id;
             this.name = name;
@@ -17,9 +15,6 @@ public class Employee {
             return id;
         }
 
-        public String getName() {
-            return name;
-        }
 
         public EmployeeType getEmployeeType() {
             return employeeType;

@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.sql.*;
 
 public class Main {
-    private static final String DB_URL = "jdbc:sqlserver://localhost\\\\SQLEXPRESS:1433;databaseName=company_db";
+    private static final String DB_URL = "jdbc:sqlserver://localhost\\\\SQLEXPRESS:1433;databaseName=company_db; trustServerCertificate=true";
     private static final String USER = "sa";
     private static final String PASS = "123";
 
@@ -44,7 +44,7 @@ public class Main {
         }
     }
 
-    private static Employee getEmployeeById(Connection conn, int id) throws SQLException {
+    static Employee getEmployeeById(Connection conn, int id) throws SQLException {
         String query = "SELECT * FROM employee WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
@@ -56,7 +56,7 @@ public class Main {
         return null;
     }
 
-    private static Item getItemById(Connection conn, int id) throws SQLException {
+    static Item getItemById(Connection conn, int id) throws SQLException {
         String query = "SELECT * FROM item WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
@@ -68,7 +68,7 @@ public class Main {
         return null;
     }
 
-    private static Customer getCustomerById(Connection conn, int id) throws SQLException {
+    static Customer getCustomerById(Connection conn, int id) throws SQLException {
         String query = "SELECT * FROM customer WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
@@ -96,24 +96,25 @@ public class Main {
             if (itemType == ItemType.BONUS) {
                 if(price <= 1000){
                     return price * 0.1;
-                }else {
-                    return 75;
                 }
-            } else if (itemType == ItemType.OTHER) {
+                else
+                    return 75;
+            }
+            else { // (itemType == ItemType.OTHER)
                 if(price <= 10000){
                     return price * 0.1;
                 }else {
                     return price * 0.05;
                 }
             }
-        } else if (employeeType == EmployeeType.SALARIED) {
+        } else {  //(employeeType == EmployeeType.SALARIED)
             if (itemType == ItemType.OTHER) {
                 if(price <= 10000){
                     return price * 0.1;
                 }else {
                     return price * 0.05;
                 }
-            } else if (itemType == ItemType.BONUS) {
+            } else { //(itemType == ItemType.BONUS)
                 if(price <= 1000){
                     return price * 0.05;
                 }else {
@@ -121,7 +122,5 @@ public class Main {
                 }
             }
         }
-
-        return 0;
     }
 }

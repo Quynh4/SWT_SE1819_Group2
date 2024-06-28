@@ -6,8 +6,7 @@ public class Customer {
     private CustomerType customerType;
 
 
-    public Customer() {
-    }
+
 
     public Customer(int id, String name, CustomerType customerType) {
         this.id = id;
@@ -19,9 +18,6 @@ public class Customer {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public CustomerType getCustomerType() {
         return customerType;

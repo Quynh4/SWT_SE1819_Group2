@@ -6,8 +6,6 @@ public class Item {
     private ItemType itemType;
     private double price;
 
-    public Item() {
-    }
     public Item(int id, String name, ItemType itemType, double price) {
         this.id = id;
         this.name = name;
@@ -19,9 +17,6 @@ public class Item {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public ItemType getItemType() {
         return itemType;
